@@ -1,0 +1,126 @@
+<template>
+  <div id="root">
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <MyHeader :addTodo="addTodo" />
+        <MyList
+          :todos="todos"
+          :handleCheck="handleCheck"
+          :deleteTodo="deleteTodo"
+        />
+        <MyFooter
+          :todos="todos"
+          :deleteDones="deleteDones"
+          :modifyAll="modifyAll"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import MyHeader from "./components/MyHeader";
+import MyList from "./components/MyList";
+import MyFooter from "./components/MyFooter";
+export default {
+  name: "App",
+  components: { MyHeader, MyList, MyFooter },
+  data() {
+    return {
+      todos: [
+        { id: "001", title: "抽烟", done: true },
+        { id: "002", title: "喝酒", done: true },
+        { id: "003", title: "开车", done: false },
+      ],
+    };
+  },
+  methods: {
+    // 增加一个todo
+    addTodo(todoObject) {
+      this.todos.unshift(todoObject);
+    },
+
+    // 修改勾选状态
+    handleCheck(todoId) {
+      this.todos.forEach((t) => {
+        // console.log(t);
+        // console.log(t.id);
+        // console.log(todoId);
+        if (t.id === todoId) t.done = !t.done; //
+        // console.log(t.done);
+      });
+    },
+
+    /*//删除一个todo,会破坏原数据,本次需求不需要保留原数据
+     deleteTodo(id) {
+      if (confirm("确定删除吗")) {
+        this.todos.forEach((t, index) => {
+          if (t.id == id) {
+            this.todos.splice(index, 1);
+          }
+        });
+      }
+    }, */
+
+    // 删除一个todo
+    deleteTodo(id) {
+      if (confirm("Are you sure you want to delete this")) {
+        this.todos = this.todos.filter((t) => t.id != id);
+      }
+    },
+
+    // 删除所有的已完成
+    deleteDones(todos) {
+      if (confirm("Are you sure you want to delete")) {
+        this.todos = todos.filter((t) => !t.done);
+      }
+    },
+
+    // 全选or取消全选
+    modifyAll(v) {
+      this.todos.forEach((t) => (t.done = v));
+    },
+  },
+};
+</script>
+
+<style>
+/*base*/
+body {
+  background: #fff;
+}
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
+.btn:focus {
+  outline: none;
+}
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+</style>
