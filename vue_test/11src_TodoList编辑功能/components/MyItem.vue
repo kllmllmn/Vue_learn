@@ -42,6 +42,8 @@ export default {
   methods: {
     editTodo(id) {
       this.$bus.$emit("editTodo", 12345, id);
+      // 添加isKeyup属性，处理keyup.enter事件  !!每次点击编辑都会重置isKeyup的属性值
+      this.$set(this.todo, "isKeyup", false);
       // console.log(this.$refs.getFocus);//获取dom元素节点，等价于下面的原生js方法
       // console.log(document.querySelector("#t"));
       // document.querySelector("#t").focus();

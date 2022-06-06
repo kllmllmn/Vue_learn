@@ -106,18 +106,38 @@ export default {
       });
     },
     // 编辑功能，修改Item
-    modifyItem(value, id) {
-      // console.log("我被调用了");
-      this.todos.forEach((t) => {
-        // value.trim()表示去掉输入值两边的空格，value.trim() != ""可以判断输入不能为空
-        if (t.id === id && value.trim() != "") {
-          t.title = value;
-        } else if (t.id === id && value.trim() === "") {
-          // FIXME keyup.enter事件触发，输入框消失，又会触发失去焦点事件，弹出两次警告
-          alert("输入不能为空");
-        }
-        t.isEdit = false;
-      });
+    modifyItem(value, id, e, isKeyup) {
+      // console.log(e);
+      // console.log(isKeyup);
+      // console.log(e.type);
+
+      if (e.type === "keyup") {
+        // console.log("我被调用了");
+        this.todos.forEach((t) => {
+          // value.trim()表示去掉输入值两边的空格，value.trim() != ""可以判断输入不能为空
+          if (t.id === id && value.trim() != "") {
+            t.title = value;
+          } else if (t.id === id && value.trim() === "") {
+            // keyup.enter事件触发，输入框消失，又会触发失去焦点事件，弹出两次警告，解决方法：在点击编辑时，给todo添加一个isKeyup属性，判断是否是keyup事件，防止两个事件依次触发
+            // console.log(t.isKeyup);
+            t.isKeyup = true;
+            alert("输入不能为空");
+          }
+          t.isEdit = false;
+        });
+      } else if (e.type === "blur" && !isKeyup) {
+        // console.log("我被调用了");
+        this.todos.forEach((t) => {
+          // value.trim()表示去掉输入值两边的空格，value.trim() != ""可以判断输入不能为空
+          if (t.id === id && value.trim() != "") {
+            t.title = value;
+          } else if (t.id === id && value.trim() === "") {
+            // keyup.enter事件触发，输入框消失，又会触发失去焦点事件，弹出两次警告，解决方法：在点击编辑时，给todo添加一个isKeyup属性，判断是否是keyup事件，防止两个事件依次触发
+            alert("输入不能为空");
+          }
+          t.isEdit = false;
+        });
+      }
     },
   },
 };
