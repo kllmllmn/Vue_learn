@@ -5,6 +5,12 @@
 <script>
 export default {
   name: "About",
+  mounted() {
+    console.log("About被挂载了", this);
+  },
+  beforeDestroy() {
+    console.log("About即将被销毁");
+  },
 };
 </script>
 

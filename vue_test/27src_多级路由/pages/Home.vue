@@ -26,6 +26,12 @@
 <script>
 export default {
   name: "Home",
+  mounted() {
+    console.log("Home被挂载了", this);
+  },
+  beforeDestroy() {
+    console.log("Home即将被销毁");
+  },
 };
 </script>
 

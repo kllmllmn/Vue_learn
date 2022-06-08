@@ -27,17 +27,8 @@ export default new VueRouter({
           component: Message,
           children: [
             {
-              // 命名路由
-              name: "detailName",
-              path: "detail/:id/:title",
-              // 写占位符
+              path: "detail",
               component: Detail,
-              props($route) {
-                return {
-                  id: $route.params.id,
-                  title: $route.params.title,
-                };
-              },
             },
           ],
         },

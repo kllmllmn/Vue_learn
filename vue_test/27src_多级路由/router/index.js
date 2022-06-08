@@ -5,7 +5,6 @@ import About from "../pages/About";
 import Home from "../pages/Home";
 import News from "../pages/News";
 import Message from "../pages/Message";
-import Detail from "../pages/Detail";
 
 // 创建并暴露一个路由器
 export default new VueRouter({
@@ -25,21 +24,6 @@ export default new VueRouter({
         {
           path: "message",
           component: Message,
-          children: [
-            {
-              // 命名路由
-              name: "detailName",
-              path: "detail/:id/:title",
-              // 写占位符
-              component: Detail,
-              props($route) {
-                return {
-                  id: $route.params.id,
-                  title: $route.params.title,
-                };
-              },
-            },
-          ],
         },
       ],
     },
