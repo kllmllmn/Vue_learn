@@ -19,12 +19,7 @@
         >
       </li>
     </ul>
-    <!-- include包含的组件表示不被销毁的组件 -->
-    <!-- <keep-alive include="News"><router-view></router-view></keep-alive> -->
-    <!-- 缓存多个组件 -->
-    <keep-alive :include="['News', 'Message']"
-      ><router-view></router-view
-    ></keep-alive>
+    <router-view></router-view>
   </div>
 </template>
 

@@ -23,9 +23,6 @@
 <script>
 export default {
   name: "Message",
-  beforeDestroy() {
-    console.log("Message即将被销毁");
-  },
   data() {
     return {
       messageList: [
