@@ -11,11 +11,11 @@ module.exports = defineConfig({
   // devServer: {
   //   proxy: {
   //     // '/api' 判断是否要向目标服务器发请求，在端口号后加'/api'就表示要向目标服务器发请求，否则只向前端（8080）发请求
-  //     "/api": {
-  //       target: "http://localhost:5000",
-  //       pathRewrite: { "^/api": "" }, //路径重写
-  //       // ws: true,
-  //       // changeOrigin: true
+  //     "/api1": {
+  //       target: "https://v.api.aa1.cn/api/api-wenan-dujitang",
+  //       pathRewrite: { "^/api1": "" }, //路径重写
+  //       ws: true,
+  //       changeOrigin: true,
   //     },
   //     /* '/foo': {
   //       target: '<other_url>'
