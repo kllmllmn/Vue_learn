@@ -8,18 +8,18 @@ module.exports = defineConfig({
     proxy: "http://localhost:5000",
   }, */
   // 开启代理服务器，解决ajax跨域问题（方式二）
-  devServer: {
-    proxy: {
-      // '/api' 判断是否要向目标服务器发请求，在端口号后加'/api'就表示要向目标服务器发请求，否则只向前端（8080）发请求
-      "/api": {
-        target: "http://localhost:5000",
-        pathRewrite: { "^/api": "" }, //路径重写
-        // ws: true,
-        // changeOrigin: true
-      },
-      /* '/foo': {
-        target: '<other_url>'
-      } */
-    },
-  },
+  // devServer: {
+  //   proxy: {
+  //     // '/api' 判断是否要向目标服务器发请求，在端口号后加'/api'就表示要向目标服务器发请求，否则只向前端（8080）发请求
+  //     "/api": {
+  //       target: "http://localhost:5000",
+  //       pathRewrite: { "^/api": "" }, //路径重写
+  //       // ws: true,
+  //       // changeOrigin: true
+  //     },
+  //     /* '/foo': {
+  //       target: '<other_url>'
+  //     } */
+  //   },
+  // },
 });
