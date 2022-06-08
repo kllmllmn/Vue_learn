@@ -1,1 +1,1 @@
-git 中origin 是远程仓库链接的别名
+1.git 中origin 是远程仓库链接的别名
