@@ -1,40 +1,98 @@
 <template>
   <div id="app">
-    <Banner></Banner>
-    <div class="row">
-      <div class="col-xs-2 col-xs-offset-2">
-        <div class="list-group">
-          <!-- 原始页面中使用a标签实现跳转 -->
-          <!-- <a class="list-group-item active" href="./about.html">About</a>
-          <a class="list-group-item" href="./home.html">Home</a> -->
+    <el-row>
+      <el-button>默认按钮</el-button>
+      <el-button type="primary">主要按钮</el-button>
+      <el-button type="success">成功按钮</el-button>
+      <el-button type="info">信息按钮</el-button>
+      <el-button type="warning">警告按钮</el-button>
+      <el-button type="danger">危险按钮</el-button>
+    </el-row>
 
-          <!-- Vue中使用router-link实现路由的切换 -->
-          <router-link class="list-group-item" active-class="active" to="/about"
-            >About</router-link
-          >
-          <router-link class="list-group-item" active-class="active" to="/home"
-            >Home</router-link
-          >
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="panel">
-          <div class="panel-body">
-            <!-- 指定组件出现的位置 -->
-            <router-view></router-view>
-          </div>
-        </div>
-      </div>
+    <el-row>
+      <el-button plain>朴素按钮</el-button>
+      <el-button type="primary" plain>主要按钮</el-button>
+      <el-button type="success" plain>成功按钮</el-button>
+      <el-button type="info" plain>信息按钮</el-button>
+      <el-button type="warning" plain>警告按钮</el-button>
+      <el-button type="danger" plain>危险按钮</el-button>
+    </el-row>
+
+    <el-row>
+      <el-button round>圆角按钮</el-button>
+      <el-button type="primary" round class="el-icon-eleme">主要按钮</el-button>
+      <el-button type="success" round>成功按钮</el-button>
+      <el-button type="info" round>信息按钮</el-button>
+      <el-button type="warning" round>警告按钮</el-button>
+      <el-button type="danger" round>危险按钮</el-button>
+    </el-row>
+
+    <el-row>
+      <el-button icon="el-icon-search" circle></el-button>
+      <el-button type="primary" icon="el-icon-edit" circle></el-button>
+      <el-button type="success" icon="el-icon-check" circle></el-button>
+      <el-button type="info" icon="el-icon-message" circle></el-button>
+      <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+      <el-button type="danger" icon="el-icon-delete" circle></el-button>
+    </el-row>
+
+    <div class="block">
+      <span class="demonstration">默认</span>
+      <el-date-picker v-model="value1" type="date" placeholder="选择日期">
+      </el-date-picker>
+    </div>
+    <div class="block">
+      <span class="demonstration">带快捷选项</span>
+      <el-date-picker
+        v-model="value2"
+        align="right"
+        type="date"
+        placeholder="选择日期"
+        :picker-options="pickerOptions"
+      >
+      </el-date-picker>
     </div>
   </div>
 </template>
 
 <script>
-// Banner是一般组件，放在components中；About、Home是路由组件，放在pages中
-import Banner from "./components/Banner.vue";
 export default {
   name: "App",
-  components: { Banner },
+  data() {
+    return {
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+        },
+        shortcuts: [
+          {
+            text: "今天",
+            onClick(picker) {
+              picker.$emit("pick", new Date());
+            },
+          },
+          {
+            text: "昨天",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit("pick", date);
+            },
+          },
+          {
+            text: "一周前",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", date);
+            },
+          },
+        ],
+      },
+      value1: "",
+      value2: "",
+    };
+  },
 };
 </script>
 
