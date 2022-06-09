@@ -9,6 +9,8 @@ import Detail from "../pages/Detail";
 
 // 创建并暴露一个路由器
 const router = new VueRouter({
+  // history模式，没有/#,默认是hash模式
+  mode: "history",
   routes: [
     {
       name: "about1",
