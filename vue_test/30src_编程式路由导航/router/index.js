@@ -29,8 +29,9 @@ export default new VueRouter({
             {
               // 命名路由
               name: "detailName",
+              // params属性，配置路由时需要写占位符
               path: "detail/:id/:title",
-              // 写占位符
+
               component: Detail,
               props($route) {
                 return {
